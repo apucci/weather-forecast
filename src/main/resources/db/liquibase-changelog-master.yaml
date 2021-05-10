@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/20210508210800_base_structure.sql
+  - include:
+      file: db/changelog/20210508211000_insert_planets.sql

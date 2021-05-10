@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.meli
+testFramework: spock
+sourceLanguage: java
+buildTool: maven
+features: [ annotation-api, app-name, data, data-jpa, graalvm, h2, http-client, java, java-application, jdbc-hikari, liquibase, logback, management, maven, micrometer, micrometer-prometheus, netty-server, openapi, properties, readme, shade, spock ]
