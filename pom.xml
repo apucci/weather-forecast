@@ -18,7 +18,7 @@
         <jdk.version>11</jdk.version>
         <release.version>11</release.version>
         <micronaut.version>2.5.1</micronaut.version>
-        <exec.mainClass>com.meli.Application</exec.mainClass>
+        <exec.mainClass>com.meli.weather.Application</exec.mainClass>
         <micronaut.data.version>2.4.2</micronaut.data.version>
         <micronaut.runtime>netty</micronaut.runtime>
     </properties>
