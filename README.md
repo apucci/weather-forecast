@@ -8,7 +8,7 @@
   greater than the area of the original triangle, tha the sun is outside the triangle;
 - The heavy rain days are discovered by saving each triangle perimeter in the database, and after querying it,
   searching; for the highest perimeter and updating all records that have the same value to heavy_rain;
-- The solution is available in heroku: https://...
+- The solution is available in heroku: https://weather-forecast-api-ap.herokuapp.com/weathers/566
 
 ## Development
 
