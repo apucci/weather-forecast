@@ -45,3 +45,8 @@ For running the tests simply run a clean install
 ```
 ./mvnw clean install
 ```
+
+### Troubleshoot
+
+If you are experiencing some issues when running the tests, try to restart your Docker, the project uses TestContainers
+and in some cases could occur some errors when trying to run the containers;
