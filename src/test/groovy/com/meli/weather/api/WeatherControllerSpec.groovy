@@ -11,7 +11,7 @@ import io.micronaut.http.HttpStatus
 
 class WeatherControllerSpec extends EmbeddedServerBaseSpec implements EntityManagerFixtures, WeatherForecastFixtures {
 
-    String basePath = "/weather"
+    String basePath = "/weathers"
 
     void 'should return a weather when find a forecast for the day'() {
         given: 'a forecast for the day'

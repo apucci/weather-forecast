@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 
-@Controller("/weather")
+@Controller("/weathers")
 public class WeatherController {
 
     private FindWeatherForecastByDayInteractor findWeatherForecastByDay;
