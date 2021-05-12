@@ -61,9 +61,9 @@ public class WeatherService {
             sumYPow = sumYPow.add(location.yAxis().pow(2));
         }
 
-        var coeficient = BigDecimal.ZERO;
+        var coefficient = BigDecimal.ZERO;
         try {
-            coeficient = sumXY.multiply(totalLocations).subtract(sumX.multiply(sumY))
+            coefficient = sumXY.multiply(totalLocations).subtract(sumX.multiply(sumY))
                     .divide(
                             sumXPow.multiply(totalLocations).subtract(sumX.pow(2)).sqrt(MathContext.DECIMAL32)
                                     .multiply(sumYPow.multiply(totalLocations).subtract(sumY.pow(2)).sqrt(MathContext.DECIMAL32))
@@ -72,7 +72,7 @@ public class WeatherService {
             return true;
         }
 
-        return compareValuesWithErrorMargin(errorMargin, BigDecimal.ONE, coeficient);
+        return compareValuesWithErrorMargin(errorMargin, BigDecimal.ONE, coefficient);
     }
 
     private boolean sunInsidePlanetsTriangle(BigDecimal errorMargin, Location pALocation, Location pBLocation, Location pCLocation) {

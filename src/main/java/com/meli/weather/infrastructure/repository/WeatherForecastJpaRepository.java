@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.Optional;
 
 @Repository
-abstract class WeatherForecastJpaRepository implements CrudRepository<WeatherForecast, String> {
+abstract class WeatherForecastJpaRepository implements CrudRepository<WeatherForecast, Integer> {
 
     private EntityManager entityMAnager;
 
@@ -20,7 +20,7 @@ abstract class WeatherForecastJpaRepository implements CrudRepository<WeatherFor
     @TransactionalAdvice
     void updateWeatherForGreatestRainIntensity(String weather) {
         entityMAnager
-                .createNativeQuery("UPDATE weather_forecasts SET weather = ?  WHERE weather = 'RAIN' AND id IN (SELECT id FROM weather_forecasts WHERE rain_intensity in (SELECT MAX(rain_intensity) FROM weather_forecasts))")
+                .createNativeQuery("UPDATE weather_forecasts SET weather = ?  WHERE weather = 'RAIN' AND day IN (SELECT day FROM weather_forecasts WHERE rain_intensity in (SELECT MAX(rain_intensity) FROM weather_forecasts))")
                 .setParameter(1, weather)
                 .executeUpdate();
     }

@@ -10,9 +10,8 @@ CREATE TABLE planets
 
 CREATE TABLE weather_forecasts
 (
-    id             VARCHAR(36) PRIMARY KEY,
+    day            INTEGER PRIMARY KEY,
     weather        VARCHAR(40) NOT NULL,
-    day            INTEGER     NOT NULL UNIQUE,
     rain_intensity DECIMAL
 );
 

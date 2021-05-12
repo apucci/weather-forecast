@@ -4,7 +4,7 @@ import com.meli.weather.commons.exception.NotFoundException;
 import com.meli.weather.domain.WeatherEnum;
 import com.meli.weather.domain.WeatherForecast;
 import com.meli.weather.domain.repository.WeatherForecastRepository;
-import com.meli.weather.infrastructure.service.WeatherService;
+import com.meli.weather.infrastructure.service.WeatherForecastService;
 
 import javax.inject.Singleton;
 
@@ -13,16 +13,16 @@ public class WeatherForecastRepositoryImpl implements WeatherForecastRepository 
 
     private WeatherForecastJpaRepository jpaRepository;
 
-    private WeatherService weatherService;
+    private WeatherForecastService weatherForecastService;
 
-    public WeatherForecastRepositoryImpl(WeatherForecastJpaRepository jpaRepository, WeatherService weatherService) {
+    public WeatherForecastRepositoryImpl(WeatherForecastJpaRepository jpaRepository, WeatherForecastService weatherForecastService) {
         this.jpaRepository = jpaRepository;
-        this.weatherService = weatherService;
+        this.weatherForecastService = weatherForecastService;
     }
 
     @Override
     public WeatherForecast create(WeatherForecast weatherForecast) {
-        return weatherService.fromModelToDomain(jpaRepository.save(weatherService.fromDomainToModel(weatherForecast)));
+        return weatherForecastService.fromModelToDomain(jpaRepository.save(weatherForecastService.fromDomainToModel(weatherForecast)));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class WeatherForecastRepositoryImpl implements WeatherForecastRepository 
 
     @Override
     public WeatherForecast findByDay(Integer day) {
-        return weatherService.fromModelToDomain(jpaRepository.findByDay(day)
+        return weatherForecastService.fromModelToDomain(jpaRepository.findByDay(day)
                 .orElseThrow(() -> new NotFoundException("No forecast found for the requested day")));
     }
 }
