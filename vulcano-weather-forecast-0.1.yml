@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: Vulcano Weather Forecast
+  version: "0.1"
+paths:
+  /weather/{day}:
+    get:
+      operationId: getWeatherByDay
+      parameters:
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: getWeatherByDay 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherForecastOutput'
+components:
+  schemas:
+    WeatherEnum:
+      type: string
+      enum:
+      - RAIN
+      - HEAVY_RAIN
+      - DROUGHT
+      - PERFECT
+      - STANDARD
+    WeatherForecastOutput:
+      type: object
+      properties:
+        weather:
+          $ref: '#/components/schemas/WeatherEnum'
+        day:
+          type: integer
+          format: int32

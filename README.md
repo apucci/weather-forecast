@@ -1,33 +1,47 @@
-## Micronaut 2.5.1 Documentation
+# Weather Forecast System
 
-- [User Guide](https://docs.micronaut.io/2.5.1/guide/index.html)
-- [API Reference](https://docs.micronaut.io/2.5.1/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/2.5.1/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+## Details
 
----
+- To verify the planet's alignment with themselves, and with the sun, was used Pearson's linear correlation coefficient;
+- The rainy days are verified by measuring the internal area of the triangle formed by the three planets, and them
+  compared with the sum of the area of the triangles formed with each 2 planet, and the sun, if sum of the area is
+  greater than the area of the original triangle, tha the sun is outside the triangle;
+- The heavy rain days are discovered by saving each triangle perimeter in the database, and after querying it,
+  searching; for the highest perimeter and updating all records that have the same value to heavy_rain;
+- The solution is available in heroku: https://...
 
-## Feature liquibase documentation
+## Development
 
-- [Micronaut Liquibase Database Migration documentation](https://micronaut-projects.github.io/micronaut-liquibase/latest/guide/index.html)
+### Comments
 
-- [https://www.liquibase.org/](https://www.liquibase.org/)
+- There is an Open API spec file, at the root, and it can be visualized at any toll that supports OAS 3;
+- There is also a metrics API, that shoes metrics in Prometheus format, that can be accessed in the path /prometheus;
 
-## Feature management documentation
+### Prerequisites
 
-- [Micronaut Management documentation](https://docs.micronaut.io/latest/guide/index.html#management)
+- Docker
+- Java 11
 
-## Feature jdbc-hikari documentation
+### Running
 
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
+First is necessary to run the Database
 
-## Feature http-client documentation
+Run local database:
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+```
+docker-compose up -d
+```
 
-## Feature openapi documentation
+After, run the application
 
-- [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
+```
+./mvnw mn:run
+```
 
-- [https://www.openapis.org](https://www.openapis.org)
+### Tests
 
+For running the tests simply run a clean install
+
+```
+./mvnw clean install
+```
