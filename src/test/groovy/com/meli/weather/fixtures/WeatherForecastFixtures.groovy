@@ -23,6 +23,15 @@ trait WeatherForecastFixtures {
         return wForecast
     }
 
+    WeatherForecast getWeatherForecastModel(Integer day) {
+        def wForecast = new WeatherForecast()
+        wForecast.day = day
+        wForecast.rainIntensity = BigDecimal.ONE
+        wForecast.weather = WeatherEnum.RAIN
+
+        return wForecast
+    }
+
     com.meli.weather.domain.WeatherForecast getWeatherForecastDomain() {
         return new com.meli.weather.domain.WeatherForecast(1, WeatherEnum.RAIN, BigDecimal.TEN)
     }

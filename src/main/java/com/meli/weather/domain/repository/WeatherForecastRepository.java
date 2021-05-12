@@ -10,4 +10,6 @@ public interface WeatherForecastRepository {
 
     WeatherForecast findByDay(Integer day);
 
+    void clearForecasts();
+
 }

@@ -17,7 +17,7 @@ public class FindWeatherForecastByDayInteractorImpl implements FindWeatherForeca
 
     @Override
     public WeatherForecastOutput execute(Integer day) {
-        var weatherForecast = weatherForecastRepository.findByDay(day);
+        var weatherForecast = this.weatherForecastRepository.findByDay(day);
         return new WeatherForecastOutput(weatherForecast.weather(), weatherForecast.day());
     }
 }

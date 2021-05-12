@@ -9,10 +9,10 @@ import com.meli.weather.fixtures.WeatherForecastFixtures
 import com.meli.weather.infrastructure.model.WeatherForecast
 import spock.lang.Subject
 
-class BasicWeatherForecastJobInteractorSpec extends ApplicationContextBaseSpec implements WeatherForecastFixtures, PlanetFixtures {
+class WeatherForecastJobInteractorSpec extends ApplicationContextBaseSpec implements WeatherForecastFixtures, PlanetFixtures {
 
     @Subject
-    BasicWeatherForecastJobInteractor forecastJobInteractor = applicationContext.getBean(BasicWeatherForecastJobInteractor)
+    WeatherForecastJobInteractor forecastJobInteractor = applicationContext.getBean(WeatherForecastJobInteractor)
 
     void 'should throws exception when have less than 3 planets'() {
         given: 'a saved forecast'

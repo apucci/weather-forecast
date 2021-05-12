@@ -37,6 +37,4 @@ class FindWeatherForecastByDayInteractorSpec extends ApplicationContextBaseSpec 
 
         assert ex.message == 'No forecast found for the requested day'
     }
-
-
 }

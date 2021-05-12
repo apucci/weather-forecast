@@ -1,6 +1,6 @@
 package com.meli.weather.application.impl;
 
-import com.meli.weather.application.BasicWeatherForecastJobInteractor;
+import com.meli.weather.application.WeatherForecastJobInteractor;
 import com.meli.weather.application.inputs.ForecastTimeInput;
 import com.meli.weather.commons.exception.ForecastException;
 import com.meli.weather.domain.WeatherEnum;
@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 import java.math.BigDecimal;
 
 @Singleton
-public class BasicWeatherForecastJobInteractorImpl implements BasicWeatherForecastJobInteractor {
+public class WeatherForecastJobInteractorImpl implements WeatherForecastJobInteractor {
 
     private PlanetRepository planetRepository;
 
@@ -21,7 +21,7 @@ public class BasicWeatherForecastJobInteractorImpl implements BasicWeatherForeca
 
     private WeatherService weatherService;
 
-    public BasicWeatherForecastJobInteractorImpl(PlanetRepository planetRepository, WeatherForecastRepository weatherForecastRepository, WeatherService weatherService) {
+    public WeatherForecastJobInteractorImpl(PlanetRepository planetRepository, WeatherForecastRepository weatherForecastRepository, WeatherService weatherService) {
         this.planetRepository = planetRepository;
         this.weatherForecastRepository = weatherForecastRepository;
         this.weatherService = weatherService;
@@ -29,7 +29,7 @@ public class BasicWeatherForecastJobInteractorImpl implements BasicWeatherForeca
 
     @Override
     public void execute(ForecastTimeInput timeInput, BigDecimal errorMargin) {
-        var originalPlanets = planetRepository.getOriginalPlanets();
+        var originalPlanets = this.planetRepository.getOriginalPlanets();
 
         if (originalPlanets.size() != 3) {
             throw new ForecastException("Must have exact 3 planets");
@@ -43,17 +43,17 @@ public class BasicWeatherForecastJobInteractorImpl implements BasicWeatherForeca
                 originalPlanets.get(2).move();
             }
 
-            var weather = weatherService.forecastWeather(originalPlanets.get(0), originalPlanets.get(1), originalPlanets.get(2), errorMargin);
+            var weather = this.weatherService.forecastWeather(originalPlanets.get(0), originalPlanets.get(1), originalPlanets.get(2), errorMargin);
             var rainIntensity = BigDecimal.ZERO;
             if (WeatherEnum.RAIN == weather) {
-                rainIntensity = weatherService.calculateRainIntensity(originalPlanets.get(0), originalPlanets.get(1), originalPlanets.get(2));
+                rainIntensity = this.weatherService.calculateRainIntensity(originalPlanets.get(0), originalPlanets.get(1), originalPlanets.get(2));
             }
 
-            weatherForecastRepository.create(new WeatherForecast(currentDay, weather, rainIntensity));
+            this.weatherForecastRepository.create(new WeatherForecast(currentDay, weather, rainIntensity));
             currentDay++;
         }
 
-        weatherForecastRepository.updateHeavyRainDays();
+        this.weatherForecastRepository.updateHeavyRainDays();
     }
 
 }

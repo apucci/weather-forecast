@@ -15,4 +15,13 @@ CREATE TABLE weather_forecasts
     rain_intensity DECIMAL
 );
 
---rollback: DROP TABLE PLANETS;DROP TABLE WEATHER_FORECAST;
+CREATE TABLE jobs_control
+(
+    id             VARCHAR(36) PRIMARY KEY,
+    type           VARCHAR(40) NOT NULL UNIQUE,
+    status         VARCHAR(40) NOT NULL,
+    execution_date TIMESTAMP   NOT NULL,
+    error_message  TEXT
+);
+
+--rollback: DROP TABLE planets;DROP TABLE weather_forecasts;DROP TABLE jobs_control;

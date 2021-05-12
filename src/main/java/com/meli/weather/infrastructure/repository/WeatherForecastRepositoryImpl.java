@@ -35,4 +35,9 @@ public class WeatherForecastRepositoryImpl implements WeatherForecastRepository 
         return weatherForecastService.fromModelToDomain(jpaRepository.findByDay(day)
                 .orElseThrow(() -> new NotFoundException("No forecast found for the requested day")));
     }
+
+    @Override
+    public void clearForecasts() {
+        jpaRepository.deleteAll();
+    }
 }
